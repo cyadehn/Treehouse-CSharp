@@ -1,0 +1,12 @@
+/Users/christopherdehner/code_louisville/projects/c#/c#-objects/bin/Debug/netcoreapp3.1/c#-objects.deps.json
+/Users/christopherdehner/code_louisville/projects/c#/c#-objects/bin/Debug/netcoreapp3.1/c#-objects.runtimeconfig.json
+/Users/christopherdehner/code_louisville/projects/c#/c#-objects/bin/Debug/netcoreapp3.1/c#-objects.runtimeconfig.dev.json
+/Users/christopherdehner/code_louisville/projects/c#/c#-objects/bin/Debug/netcoreapp3.1/c#-objects.dll
+/Users/christopherdehner/code_louisville/projects/c#/c#-objects/bin/Debug/netcoreapp3.1/c#-objects.pdb
+/Users/christopherdehner/code_louisville/projects/c#/c#-objects/obj/Debug/netcoreapp3.1/c#-objects.csprojAssemblyReference.cache
+/Users/christopherdehner/code_louisville/projects/c#/c#-objects/obj/Debug/netcoreapp3.1/c#-objects.AssemblyInfoInputs.cache
+/Users/christopherdehner/code_louisville/projects/c#/c#-objects/obj/Debug/netcoreapp3.1/c#-objects.AssemblyInfo.cs
+/Users/christopherdehner/code_louisville/projects/c#/c#-objects/obj/Debug/netcoreapp3.1/c#-objects.csproj.CoreCompileInputs.cache
+/Users/christopherdehner/code_louisville/projects/c#/c#-objects/obj/Debug/netcoreapp3.1/c#-objects.dll
+/Users/christopherdehner/code_louisville/projects/c#/c#-objects/obj/Debug/netcoreapp3.1/c#-objects.pdb
+/Users/christopherdehner/code_louisville/projects/c#/c#-objects/obj/Debug/netcoreapp3.1/c#-objects.genruntimeconfig.cache
