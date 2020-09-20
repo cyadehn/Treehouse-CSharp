@@ -4,6 +4,11 @@ namespace TreehouseDefense
   { 
       private readonly Path _path;
       private int _pathStep = 0;
+
+      public Invader(Path path)
+      {
+          _path = path;
+      }
       
       public MapLocation Location => _path.GetLocationAt(_pathStep);
       
@@ -14,13 +19,10 @@ namespace TreehouseDefense
       //
       
       // True if the invader has reached the end of the path
-      public bool HasScored() => _pathStep >= _path.Length; 
+      public bool HasScored => (_pathStep >= _path.Length); 
 
-	public bool IsNeutralized() => (Health <= 0) ? true : false;
-      public Invader(Path path)
-      {
-          _path = path;
-      }
+	public bool IsNeutralized => (Health <= 0);
+	public bool IsActive => !(IsNeutralized || HasScored);
     
       public void Move() => _pathStep += 1;
       public void DecreaseHealth(int factor)
