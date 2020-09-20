@@ -10,7 +10,7 @@ namespace TreehouseDefense
         }
     }
   
-    class OutOfBoundsException : TreehouseDefenseException 
+    class  OutOfBoundsException : TreehouseDefenseException 
     {
         public OutOfBoundsException()
         {
@@ -19,4 +19,13 @@ namespace TreehouseDefense
         { 
         }
     }
+    class OnPathException : TreehouseDefenseException
+	{
+		public OnPathException()
+		{
+		}
+		public OnPathException(string message) : base(message)
+		{
+		}
+	}
 }
