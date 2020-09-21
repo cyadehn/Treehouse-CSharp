@@ -22,7 +22,7 @@ namespace TreehouseDefense
 			}
 		}
 
-		public void fireOnInvaders(Invader[] invaders)
+		public void FireOnInvaders(Invader[] invaders)
 		{
 			foreach(Invader invader in invaders)
 			{
