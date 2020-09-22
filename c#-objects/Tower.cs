@@ -11,14 +11,11 @@ namespace TreehouseDefense
 
         private static readonly System.Random _random = new System.Random();
 
-			if (path.OnPath(location))
-			{
-				_location = location;
-			} else
-			{
-				throw new OnPathException($"({location.X},{location.Y}) cannot be placed on the path!");
-			}
-		}
+        public Tower(MapLocation location, Path path, int range, int power)
+        {
+            _path = path;
+            _range = range;
+            _power = power;
 
             if (path.OnPath(location))
             {
