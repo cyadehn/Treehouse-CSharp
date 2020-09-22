@@ -4,6 +4,7 @@ namespace TreehouseDefense
 	{
 		private readonly Invader[] _invaders;
 
+		// Currently set on Level init in Game.cs
 		public Tower[] Towers { get; set; }
 
 		public Level(Invader[] invaders)
