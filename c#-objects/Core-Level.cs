@@ -2,12 +2,12 @@ namespace TreehouseDefense
 {
 	class Level
 	{
-		private readonly Invader[] _invaders;
+		private readonly IInvader[] _invaders;
 
 		// Currently set on Level init in Game.cs
 		public Tower[] Towers { get; set; }
 
-		public Level(Invader[] invaders)
+		public Level(IInvader[] invaders)
 		{
 			_invaders = invaders;
 		}
@@ -29,7 +29,7 @@ namespace TreehouseDefense
 
 				// Count and move the invaders that are still active
 				remainingInvaders = 0;
-				foreach( Invader invader in _invaders )
+				foreach( IInvader invader in _invaders )
 				{
 					if( invader.IsActive )
 					{
