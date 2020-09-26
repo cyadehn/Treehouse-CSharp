@@ -1,13 +1,13 @@
 using System;
 namespace TreehouseDefense
 {
-    class StrongInvader : ArmedInvader
+    class StrongArmedInvader : ArmedInvader
     {
         public override int Health { get; protected set; } = 100;
+        public override int Power { get; protected set; } = 2;
         protected override double Accuracy {get;} = .25;
-        protected override int Power {get;} = 2;
 
-        public StrongInvader(Path path) : base(path)
+        public StrongArmedInvader(Path path) : base(path)
         {}
     }
 }
