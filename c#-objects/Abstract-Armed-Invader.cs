@@ -1,16 +1,19 @@
 using System;
 namespace TreehouseDefense
 {
-    class ArmedInvader : Invader
+    abstract class ArmedInvader : Invader
     {
         private static readonly System.Random _random = new System.Random();
+        private readonly Path _path;
 
-        protected virtual double Accuracy {get;} = .5;
-        protected virtual int Power {get;} = 1;
-        public override int Health { get; protected set; } = 100;
+        protected virtual double Accuracy {get;} = 1;
+        public override abstract int Health { get; protected set; }
+        public override abstract int Power { get; protected set; }
 
         public ArmedInvader(Path path) : base(path)
-        {}
+        {
+            _path = path;
+        }
         
         private bool IsSuccessfulShot()
         {
@@ -21,6 +24,7 @@ namespace TreehouseDefense
         {
             foreach(Tower tower in towers)
             {
+                Console.WriteLine("Invader is aiming...");
                 if ( IsSuccessfulShot() )
                 {
                     tower.DecreaseHealth(Power);

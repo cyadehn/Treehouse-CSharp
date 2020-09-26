@@ -12,12 +12,14 @@ namespace TreehouseDefense
         }
 
         public MapLocation Location => _path.GetLocationAt(_pathStep);
+        public string Honorific => this.GetType().Name;
+        public bool IsArmed => Honorific == "StrongArmedInvader" || Honorific == "BasicArmedInvader";
 
         //
         //Setter made private
         //User should use DecreaseHealth(factor)
         public abstract int Health { get; protected set; }
-        //
+        public abstract int Power { get; protected set; }
 
         // True if the invader has reached the end of the path
         public bool HasScored => (_pathStep >= _path.Length); 
