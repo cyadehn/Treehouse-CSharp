@@ -25,12 +25,10 @@ namespace TreehouseDefense
 			  {
 				  new ShieldedInvader(path),
 				  new FastInvader(path),
-				  new ArmedInvader(path),
+				  new BasicArmedInvader(path),
+				  new ResurrectingInvader(path),
 				  new ResurrectingInvader(path),
 				  new BasicInvader(path),
-				  new BasicInvader(path),
-                                  new BasicInvader(path),
-                                  new BasicInvader(path)
 			  };
 
 			  Tower[] towers =
@@ -38,8 +36,6 @@ namespace TreehouseDefense
 				  new Tower(new MapLocation(1, 3, map), map, path),
 				  new Tower(new MapLocation(4, 3, map), map, path),
 				  new Tower(new MapLocation(2, 1, map), map, path),
-				  new StrongTower(new MapLocation(1, 1, map), map, path),
-                                  new StrongTower(new MapLocation(7, 1, map), map, path),
                                   new StrongTower(new MapLocation(7, 3, map), map, path),
 				  new SniperTower(new MapLocation(3, 3, map), map, path)
 			  };

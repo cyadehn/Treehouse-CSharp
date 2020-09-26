@@ -1,3 +1,4 @@
+using System;
 namespace TreehouseDefense
 {
     abstract class Invader : IInvader
@@ -27,10 +28,16 @@ namespace TreehouseDefense
         public bool IsNeutralized => (Health <= 0);
         public bool IsActive => !(IsNeutralized || HasScored);
 
-        public virtual void Move() => _pathStep += StepSize;
+        //public virtual void Move() => _pathStep += StepSize;
+        public virtual void Move()
+        {
+            _pathStep += StepSize;
+        }
         public virtual void DecreaseHealth(int factor)
         {
           Health -= factor; 
         }
+        public virtual void FireOnTowers(Tower[] towers)
+        {}
     }
 }

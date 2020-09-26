@@ -34,16 +34,13 @@ namespace TreehouseDefense
                     if( invader.IsActive )
                     {
                         invader.Move();
-
                         if( invader.HasScored )
                         {
                             return false;
                         }
                         
-                        if ( invader.IsArmed ) 
-                        {
-                            invader.FireOnTowers();
-                        }
+                        invader.FireOnTowers(Towers);
+
                         remainingInvaders++;
                     }
                 }

@@ -10,7 +10,9 @@ namespace TreehouseDefense
         public virtual double Accuracy {get;} = .75;
         public virtual int Range {get;} = 2;
         public virtual int Power {get;} = 50;
-        public virtual int Health {get; protected set;} = 4;
+        public virtual int Health {get; protected set;} = 1;
+        public string Coordinates => $"({_location.X}, {_location.Y})";
+        public string Honorific => this.GetType().Name;
 
         private static readonly System.Random _random = new System.Random();
 
@@ -33,7 +35,7 @@ namespace TreehouseDefense
             }
         }
 
-        private bool IsNeutralized() => Health <= 0;
+        public bool IsActive => Health > 0;
         private bool IsSuccessfulShot()
         {
             return _random.NextDouble() < Accuracy;
@@ -48,15 +50,16 @@ namespace TreehouseDefense
                     if (IsSuccessfulShot())
                     {
                         invader.DecreaseHealth(Power);
-                        Console.WriteLine("Shot at and hit an invader!");
+                        //Console.WriteLine($"SUCCESS : Shot and hit {invader.GetType().Name}!");
+                        Console.Write($"|x|");
 
                         if (invader.IsNeutralized)
                         {
-                            Console.WriteLine("Neutralized an invader!");
+                            Console.WriteLine($"\n+1EXP : {invader.Honorific} neutralized!\n");
                         }
                     } else
                     {
-                        Console.WriteLine("Shot at and missed an invader!");
+                        Console.Write("|o|");
                     }
                     break;
                 }

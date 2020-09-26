@@ -3,6 +3,8 @@ namespace TreehouseDefense
     class ShieldedInvader : Invader
     {
         public override int Health { get; protected set; } = 100;
+        public override int Power { get; protected set; } = 0;
+
         private static System.Random _random = new System.Random();
 
         public ShieldedInvader(Path path) : base(path)

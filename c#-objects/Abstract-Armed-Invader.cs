@@ -20,16 +20,28 @@ namespace TreehouseDefense
             return _random.NextDouble() < Accuracy;
         }
 
-        public void FireOnTowers(Tower[] towers)
+        public override void FireOnTowers(Tower[] towers)
         {
             foreach(Tower tower in towers)
             {
-                Console.WriteLine("Invader is aiming...");
-                if ( IsSuccessfulShot() )
+                if ( tower.IsActive )
                 {
-                    tower.DecreaseHealth(Power);
-                    Console.WriteLine("Tower hit by invader!");
+                    Console.Write("\nINCOMING!!!");
+                    if ( IsSuccessfulShot() )
+                    {
+                        tower.DecreaseHealth(Power);
+                        Console.WriteLine($"{tower.Honorific} hit by invader! Health left: {tower.Health}");
+
+                        if ( !tower.IsActive )
+                        {
+                            Console.WriteLine($"{tower.Honorific}{tower.Coordinates} has fallen.\n");
+                        }
+                    }
+                    else {
+                        Console.WriteLine($"{tower.Honorific}{tower.Coordinates} missed by {Honorific}");
+                    }
                 }
+                break;
             }
         }
     }

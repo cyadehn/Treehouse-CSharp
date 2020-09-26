@@ -38,5 +38,17 @@ namespace TreehouseDefense
                 _regeneration2.DecreaseHealth(factor);
             }
         }
+
+        public void FireOnTowers(Tower[] towers)
+        {
+            if ( _regeneration1.IsNeutralized )
+            {
+                _regeneration2.FireOnTowers(towers);
+            } 
+            else
+            {
+                _regeneration1.FireOnTowers(towers);
+            }
+        }
     }
 }
