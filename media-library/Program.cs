@@ -4,6 +4,22 @@ namespace Treehouse.MediaLibrary
 {
     class Program
     {
+        static void DetectMediaType( MediaItem item )
+        {
+           if(item is Composition)
+           {
+               Console.WriteLine($"{item.Title} is a composition!");
+           } 
+           if(item is VideoGame)
+           {
+               Console.WriteLine($"{item.Title} is a videogame!");
+           } 
+           if(item is Film)
+           {
+               Console.WriteLine($"{item.Title} is a film!");
+           } 
+        }
+
         static void Main()
         {
           
@@ -21,13 +37,17 @@ namespace Treehouse.MediaLibrary
           Composition composition4 = new Composition("Bird With A Broken Wing", "Adam Young", 2015);
           Composition composition5 = new Composition("Deer In The Headlights", "Owl City", 2011);
           
-          game1.Loan("Gracie Reece");
-          game2.Loan("Mike Elder");
-          game3.Loan("Joey Geneseo");
+          DetectMediaType(game1);
+          DetectMediaType(film1);
+          DetectMediaType(composition1);
+
+//          game1.Loan("Gracie Reece");
+//          game2.Loan("Mike Elder");
+//          game3.Loan("Joey Geneseo");
           
-          game1.TransferLoan("Jonah Larison");
-          game2.Return();
-          game2.Loan();
+//          game1.TransferLoan("Jonah Larison");
+//          game2.Return();
+//          game2.Loan();
           
 //          Console.WriteLine(game1.GetDisplayText());
 //          Console.WriteLine(game2.GetDisplayText());
