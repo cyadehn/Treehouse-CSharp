@@ -5,8 +5,6 @@ namespace Treehouse.MediaLibrary
     {
         public readonly int Year;
         public readonly string Director;
-        public bool OnLoan = false;
-        public string Loanee = null;
       
         public Film( string title, int year, string director ) : base(title)
         {
@@ -14,7 +12,7 @@ namespace Treehouse.MediaLibrary
             Director = director;
         }
       
-        public string GetDisplayText() {
+        public override string GetDisplayText() {
           string displayText = "";
           displayText += $"Film: \"{Title}\", directed by {Director}\n";
           displayText += $"Released in {Year}\n";
@@ -27,30 +25,25 @@ namespace Treehouse.MediaLibrary
           }
           return displayText;
         }
-      
-        public void Loan( string loanee ) {
-            Loanee = loanee;
-            OnLoan = true;
-        }
-        public void Loan() {
-            Console.Write($"Are you sure you want to loan {Title} out without storing a loanee? ");
-            string verify = Console.ReadLine();
-            if (verify == "Y" || verify == "y") {
-                Loanee = null;
-                OnLoan = true;
-            } else {
-                Console.WriteLine("Loan canceled.");
+
+        public override string GetLoanText()
+        {
+            string loanText = "";
+            loanText += $"{this.GetType().Name} is ";
+            if (OnLoan) 
+            {
+                if (!string.IsNullOrEmpty(Loanee)) 
+                {
+                    loanText += $"On loan to {Loanee}\n";
+                } else 
+                {
+                    loanText += "On loan\n";
+                }
+            } else
+            {
+                loanText += "currently not on loan.";
             }
-        }
-        public void Return() {
-            Loanee = null;
-            OnLoan = false;
-        }
-        public void TransferLoan( string loanee ) {
-            Loanee = loanee;
-        }
-        public void TransferLoan() {
-            Loan();
+            return loanText;
         }
     }
 }
