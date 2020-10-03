@@ -9,7 +9,12 @@ namespace Treehouse.MediaLibrary
 
         public MediaItem(string title)
         {
-            Title = title;
+            if ( !string.IsNullOrEmpty(title)) {
+                Title = title;
+            } else
+            {
+                throw new Exception("A media type must have a title.");
+            }
         }
 
         public abstract string GetDisplayText();
