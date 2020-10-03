@@ -45,26 +45,6 @@ namespace Treehouse.MediaLibrary
                 DetectMediaType(game1);
                 DetectMediaType(film1);
                 DetectMediaType(composition1);
-
-                //          game1.Loan("Gracie Reece");
-                //          game2.Loan("Mike Elder");
-                //          game3.Loan("Joey Geneseo");
-
-                //          game1.TransferLoan("Jonah Larison");
-                //          game2.Return();
-                //          game2.Loan();
-
-                //          Console.WriteLine(game1.GetDisplayText());
-                //          Console.WriteLine(game2.GetDisplayText());
-                //          Console.WriteLine(game3.GetDisplayText());
-
-                Console.WriteLine(composition1.GetDisplayText());
-                Console.WriteLine(composition2.GetDisplayText());
-                Console.WriteLine(composition3.GetDisplayText());
-                Console.WriteLine(composition4.GetDisplayText());
-                Console.WriteLine(composition5.GetDisplayText());
-
-                Console.WriteLine(game1.GetLoanText());
             }          
             catch (Exception ex) {
                Console.WriteLine(ex);
