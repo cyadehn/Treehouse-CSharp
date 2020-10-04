@@ -10,8 +10,8 @@ namespace Treehouse.MediaLibrary
 {
     class Composition : MediaItem
     {
-        public readonly string Composer;
-        public readonly int Year;
+        public string Composer { get; private set; }
+        public int Year { get; private set; }
         
         public Composition( string title, string composer, int year ) : base(title)
         {
@@ -19,38 +19,41 @@ namespace Treehouse.MediaLibrary
             Year = year;
         }
       
-        public override string GetDisplayText() {
-          string displayText = "";
-          displayText += $"Composition: \"{Title}\", composed by {Composer}\n";
-          displayText += $"Released/first performed in {Year}\n";
-          if (OnLoan) {
-            if (!string.IsNullOrEmpty(Loanee)) {
-                displayText += $"(On loan to {Loanee})\n";
-              } else {
-                displayText += "(On loan)\n";
-              }
-          }
-          return displayText;
+        public override string DisplayText 
+        {
+            get 
+            {            
+                string displayText = "";
+                displayText += $"Composition: \"{Title}\", composed by {Composer}";
+                displayText += $"Released/first performed in {Year}";
+                if (!string.IsNullOrEmpty(Loanee)) {
+                    displayText += "(On loan)";
+                }
+                return displayText;
+            }
         }
 
-        public override string GetLoanText()
+        public override string LoanText
         {
-            string loanText = "";
-            loanText += $"{this.GetType().Name} is ";
-            if (OnLoan) 
+            get
             {
-                if (!string.IsNullOrEmpty(Loanee)) 
+                string loanText = "";
+                loanText += $"{this.GetType().Name} is ";
+                if (OnLoan) 
                 {
-                    loanText += $"On loan to {Loanee}\n";
-                } else 
+                    if (!string.IsNullOrEmpty(Loanee)) 
+                    {
+                        loanText += $"On loan to {Loanee}";
+                    } else 
+                    {
+                        loanText += "On loan";
+                    }
+                } else
                 {
-                    loanText += "On loan\n";
+                    loanText += "currently not on loan.";
                 }
-            } else
-            {
-                loanText += "currently not on loan.";
+                return loanText;
             }
-            return loanText;
         }
     }
 }

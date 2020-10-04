@@ -10,9 +10,9 @@ namespace Treehouse.MediaLibrary
 {
     public abstract class MediaItem
     {
-        public string Title;
-        public bool OnLoan = false;
-        public string Loanee = null;
+        public string Title { get; set; }
+        public bool OnLoan { get; set; } = false;
+        public string Loanee { get; set; } = "";
 
         public MediaItem(string title)
         {
@@ -24,7 +24,7 @@ namespace Treehouse.MediaLibrary
             }
         }
 
-        public abstract string GetDisplayText();
+        public abstract string DisplayText { get; }
 
         public void Loan( string loanee ) {
             Loanee = loanee;
@@ -50,6 +50,6 @@ namespace Treehouse.MediaLibrary
         public void TransferLoan() {
             Loan();
         }
-        public abstract string GetLoanText();
+        public abstract string LoanText { get; }
     }
 }

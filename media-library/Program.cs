@@ -12,7 +12,11 @@ namespace Treehouse.MediaLibrary
     {
         static void DetectMediaType( MediaItem item )
         {
-           if(item is Composition)
+           if ( item == null )
+           {
+               return;
+           } 
+           else if(item is Composition)
            {
                Console.WriteLine($"{item.Title} is a composition!");
            } 
@@ -24,10 +28,6 @@ namespace Treehouse.MediaLibrary
            {
                Console.WriteLine($"{item.Title} is a film!");
            } 
-           else if(item is null)
-           {
-               Console.WriteLine("No item found at that index.");
-           }
            else {
                throw new Exception("Unexpected media subtype encountered.");
            }
@@ -36,10 +36,11 @@ namespace Treehouse.MediaLibrary
         static void Main()
         {
             try {
-                MediaLibrary mediaLibrary = new MediaLibrary(MediaRepository.LoadMedia());
-                Console.WriteLine(mediaLibrary.GetItemAt(2).GetDisplayText());
+                MediaLibrary mediaLibrary = new MediaLibrary(MediaRepository.LoadMedia(), "Chris");
+                Console.WriteLine(mediaLibrary.GetItemAt(2).DisplayText);
                 DetectMediaType(mediaLibrary.GetItemAt(8));
                 DetectMediaType(mediaLibrary.GetItemAt(20));
+                Console.WriteLine($"There are {mediaLibrary.NumberOfItems} items in {mediaLibrary.Name}");
             }
             catch (Exception ex) {
                Console.WriteLine(ex);

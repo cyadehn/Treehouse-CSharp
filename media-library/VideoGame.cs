@@ -10,10 +10,10 @@ namespace Treehouse.MediaLibrary
 {
     class VideoGame : MediaItem
     {
-        public readonly string ReleaseDate;
-        public readonly string Developer;
-        public readonly string Studio;
-        public readonly string Platform;
+        public string ReleaseDate { get; private set; }
+        public string Developer { get; private set; }
+        public string Studio { get; private set; }
+        public string Platform { get; private set; }
       
         public VideoGame( string title, string releaseDate, string studio, string developer, string platform ) : base(title)
         {
@@ -23,32 +23,43 @@ namespace Treehouse.MediaLibrary
             Platform = platform;
         }
       
-        public override string GetDisplayText() {
-          string displayText = "";
-          displayText += $"Game: \"{Title}\",\n";
-          displayText += $"developed/produced by {Developer} & {Studio}\n";
-          displayText += $"Release Date: {ReleaseDate}\n";
-          return displayText;
+        public override string DisplayText 
+        {
+            get
+            {
+                string displayText = "";
+                displayText += $"Game: \"{Title}\",\n";
+                displayText += $"developed/produced by {Developer} & {Studio}\n";
+                displayText += $"Release Date: {ReleaseDate}\n";
+                if (OnLoan)
+                {
+                    displayText += $"(on loan)";
+                }
+                return displayText;
+            }
         }
 
-        public override string GetLoanText()
+        public override string LoanText
         {
-            string loanText = "";
-            loanText += $"{this.GetType().Name} is ";
-            if (OnLoan) 
+            get
             {
-                if (!string.IsNullOrEmpty(Loanee)) 
+                string loanText = "";
+                loanText += $"{this.GetType().Name} is ";
+                if (OnLoan) 
                 {
-                    loanText += $"On loan to {Loanee}\n";
-                } else 
+                    if (!string.IsNullOrEmpty(Loanee)) 
+                    {
+                        loanText += $"On loan to {Loanee}";
+                    } else 
+                    {
+                        loanText += "On loan";
+                    }
+                } else
                 {
-                    loanText += "On loan\n";
+                    loanText += "currently not on loan.";
                 }
-            } else
-            {
-                loanText += "currently not on loan.";
+                return loanText;
             }
-            return loanText;
         }
     }
 }
