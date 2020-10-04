@@ -19,14 +19,7 @@ namespace Treehouse.MediaLibrary
 
         public MediaItem GetItemAt( int i )
         {
-            if ( i < _items.Count() )
-            {
-                return _items[i];
-            }
-            else
-            {
-                return null;
-            }
+            return index < _items.Count() ? _items.ElementAt(i) : return null;
         }
     }
 }
