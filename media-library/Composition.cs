@@ -24,8 +24,8 @@ namespace Treehouse.MediaLibrary
             get 
             {            
                 string displayText = "";
-                displayText += $"Composition: \"{Title}\", composed by {Composer}";
-                displayText += $"Released/first performed in {Year}";
+                displayText += $"Composition: \"{Title}\", composed by {Composer}\n";
+                displayText += $"Released/first performed in {Year}\n";
                 if (!string.IsNullOrEmpty(Loanee)) {
                     displayText += "(On loan)";
                 }

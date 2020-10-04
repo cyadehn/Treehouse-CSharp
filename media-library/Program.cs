@@ -36,11 +36,19 @@ namespace Treehouse.MediaLibrary
         static void Main()
         {
             try {
-                MediaLibrary mediaLibrary = new MediaLibrary(MediaRepository.LoadMedia(), "Chris");
-                Console.WriteLine(mediaLibrary.GetItemAt(2).DisplayText);
-                DetectMediaType(mediaLibrary.GetItemAt(8));
-                DetectMediaType(mediaLibrary.GetItemAt(20));
-                Console.WriteLine($"There are {mediaLibrary.NumberOfItems} items in {mediaLibrary.Name}");
+                MediaLibrary library = new MediaLibrary(MediaRepository.LoadMedia(), "Chris");
+                Console.WriteLine($"There are {library.NumberOfItems} items in {library.Name}");
+                library.DisplayItems();
+                
+                MediaItem search = library.FindItem("Symphony");
+                if ( search != null )
+                {
+                    library.DisplayItem(search);
+                }
+                else
+                {
+                    Console.WriteLine("MediaItem not found!");
+                }
             }
             catch (Exception ex) {
                Console.WriteLine(ex);

@@ -34,5 +34,39 @@ namespace Treehouse.MediaLibrary
         }
 
         public int NumberOfItems => _items.Count();
+
+        public void DisplayItems()
+        {
+            foreach ( var item in _items )
+            {
+                Console.WriteLine(item.DisplayText);
+            }
+        }
+
+        public void DisplayItem( MediaItem item )
+        {
+            if ( item != null )
+            {
+                Console.WriteLine(item.DisplayText);
+            }
+            else
+            {
+                Console.WriteLine("MediaItem is not defined/null");
+            }
+        }
+
+        public MediaItem FindItem(string criteria)
+        {
+            MediaItem result = null;
+            foreach ( var item in _items )
+            {
+                if ( item.Title.ToLower().Contains(criteria.ToLower()) )
+                {
+                    result = item;
+                    break;
+                }
+            }
+            return result;
+        }
     }
 }

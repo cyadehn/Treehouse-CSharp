@@ -23,8 +23,8 @@ namespace Treehouse.MediaLibrary
             get
             {
                 string displayText = "";
-                displayText += $"Film: \"{Title}\", directed by {Director}";
-                displayText += $"Released in {Year}";
+                displayText += $"Film: \"{Title}\", directed by {Director}\n";
+                displayText += $"Released in {Year}\n";
                 if (!string.IsNullOrEmpty(Loanee)) {
                     displayText += "(On loan)";
                 }
