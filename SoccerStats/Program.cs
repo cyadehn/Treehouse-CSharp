@@ -1,4 +1,9 @@
-﻿using System;
+﻿//** TODO: CHECK NEWSRESULT LIST FOR DUPLICATES WITH LINQ(?) AND RETURN A DISTINCT LIST...
+//              1. Use a for-loop in the GetNews method to assign a "SentimentId" in each newsresult object using a hashcode of the headline multiplied by the index of the for loop?
+//
+//** TODO: ADD TRY/CATCH and IF STATEMENT after to allow for exception reporting... does Json.Net have exceptions? Put in trycatch too?
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -30,17 +35,18 @@ namespace SoccerStats
             foreach (var player in GetTopTenPlayers(players))
             {
                 List<NewsResult> newsResults = GetNewsForPlayer(string.Format("{0} {1}", player.FirstName, player.SecondName));
-
-                //TODO: Check for duplicate headlines (part of getnewsforplayer??)
-
                 SentimentResponse sentimentResponse = GetSentimentResponse(newsResults);
                 foreach (var sentiment in sentimentResponse.Sentiments)
                 {
+                    Console.WriteLine(sentiment.MainSentiment);
+                    Console.WriteLine(sentiment.Id);
                     foreach ( var newsResult in newsResults )
                     {
-                        if ( newsResult.Headline == sentiment.Id )
+                        Console.WriteLine(newsResult.SentimentId);
+                        if ( newsResult.SentimentId == sentiment.Id )
                         {
                             newsResult.SentimentScore = sentiment.MainSentiment;
+                            Console.WriteLine(newsResult.SentimentScore);
                             break;
                         }
                     }
@@ -49,7 +55,7 @@ namespace SoccerStats
                 Console.WriteLine(string.Format("Player: {0} {1}", player.FirstName, player.SecondName));
                 foreach(var result in newsResults)
                 {
-                    Console.WriteLine(string.Format("Date: {0:f}, Headline: {1}, Summary: {2}, Sentiment Score: {3}\r\n", result.DatePublished, result.Headline, result.Summary, ""));
+                    Console.WriteLine(string.Format("Date: {0:f}, Headline: {1}, Summary: {2}, Sentiment Score: {3}\r\n", result.DatePublished, result.Headline, result.Summary, result.SentimentScore));
                     Console.ReadKey();
                 }
             }
@@ -182,7 +188,13 @@ namespace SoccerStats
             using (var reader = new StreamReader(stream))
             using (var jsonReader = new JsonTextReader(reader))
             {
-            results = serializer.Deserialize<NewsSearch>(jsonReader).NewsResults;
+                results = serializer.Deserialize<NewsSearch>(jsonReader).NewsResults;
+            }
+            int index = 0;
+            foreach (var result in results)
+            {
+                result.SentimentId = result.Headline + index.ToString();
+                index ++;
             }
             return results;
         }
@@ -194,7 +206,7 @@ namespace SoccerStats
             sentimentRequest.Documents = new List<Document>();
             foreach (var result in newsResults)
             {
-                sentimentRequest.Documents.Add(new Document { Id = result.Headline, Text = result.Summary });
+                sentimentRequest.Documents.Add(new Document { Id = result.SentimentId, Text = result.Summary });
             }
             var webClient = new WebClient();
             webClient.Headers.Add("Ocp-Apim-Subscription-Key", "364c7692b83247139c69060b3e40d396");
@@ -202,9 +214,17 @@ namespace SoccerStats
             string requestJson = JsonConvert.SerializeObject(sentimentRequest);
             byte[] requestBytes = Encoding.UTF8.GetBytes(requestJson);
             string endpoint = "cyadehn-th-textanalytics.cognitiveservices.azure.com";
-            byte[]  response = webClient.UploadData(string.Format("https://{0}/text/analytics/v3.0/sentiment", endpoint), requestBytes);
-            string sentiments = Encoding.UTF8.GetString(response);
-            sentimentResponse = JsonConvert.DeserializeObject<SentimentResponse>(sentiments);
+            byte[] response;
+            try
+            {
+                response = webClient.UploadData(string.Format("https://{0}/text/analytics/v3.0/sentiment", endpoint), requestBytes);
+                string sentiments = Encoding.UTF8.GetString(response);
+                sentimentResponse = JsonConvert.DeserializeObject<SentimentResponse>(sentiments);
+            }
+            catch(WebException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
             return sentimentResponse;
         }
     }

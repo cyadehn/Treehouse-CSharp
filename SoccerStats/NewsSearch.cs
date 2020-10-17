@@ -42,6 +42,7 @@ namespace SoccerStats
         public DateTime DatePublished { get; set; }
         public string Category { get; set; }
         public string SentimentScore { get; set; }
+        public string SentimentId { get; set; }
     }
 
     public class Image
