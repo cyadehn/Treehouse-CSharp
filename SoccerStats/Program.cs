@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 using System.Diagnostics;
 using System.Net;
 
@@ -36,17 +37,13 @@ namespace SoccerStats
             {
                 List<NewsResult> newsResults = GetNewsForPlayer(string.Format("{0} {1}", player.FirstName, player.SecondName));
                 SentimentResponse sentimentResponse = GetSentimentResponse(newsResults);
-                foreach (var sentiment in sentimentResponse.Sentiments)
+                foreach (var response in sentimentResponse.Responses )
                 {
-                    Console.WriteLine(sentiment.MainSentiment);
-                    Console.WriteLine(sentiment.Id);
                     foreach ( var newsResult in newsResults )
                     {
-                        Console.WriteLine(newsResult.SentimentId);
-                        if ( newsResult.SentimentId == sentiment.Id )
+                        if ( newsResult.SentimentId == response.Id )
                         {
-                            newsResult.SentimentScore = sentiment.MainSentiment;
-                            Console.WriteLine(newsResult.SentimentScore);
+                            newsResult.SentimentScore = response.MainSentiment;
                             break;
                         }
                     }
@@ -218,8 +215,9 @@ namespace SoccerStats
             try
             {
                 response = webClient.UploadData(string.Format("https://{0}/text/analytics/v3.0/sentiment", endpoint), requestBytes);
+                ITraceWriter traceWriter = new MemoryTraceWriter();
                 string sentiments = Encoding.UTF8.GetString(response);
-                sentimentResponse = JsonConvert.DeserializeObject<SentimentResponse>(sentiments);
+                sentimentResponse = JsonConvert.DeserializeObject<SentimentResponse>(sentiments, new JsonSerializerSettings { TraceWriter = traceWriter });
             }
             catch(WebException ex)
             {
