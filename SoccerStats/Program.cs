@@ -218,6 +218,7 @@ namespace SoccerStats
                 ITraceWriter traceWriter = new MemoryTraceWriter();
                 string sentiments = Encoding.UTF8.GetString(response);
                 sentimentResponse = JsonConvert.DeserializeObject<SentimentResponse>(sentiments, new JsonSerializerSettings { TraceWriter = traceWriter });
+                Console.Write(traceWriter);
             }
             catch(WebException ex)
             {
