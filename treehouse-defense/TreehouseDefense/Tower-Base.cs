@@ -6,21 +6,17 @@ namespace TreehouseDefense
         private readonly MapLocation _location;
         private readonly Map _map;
         private readonly Path _path;
-
         public virtual double Accuracy {get;} = .75;
         public virtual int Range {get;} = 2;
         public virtual int Power {get;} = 50;
         public virtual int Health {get; protected set;} = 1;
         public string Coordinates => $"({_location.X}, {_location.Y})";
         public string Honorific => this.GetType().Name;
-
         private static readonly System.Random _random = new System.Random();
-
-        public Tower(MapLocation location, Map map, Path path) {
-            
+        public Tower(MapLocation location, Map map, Path path) 
+        {
             _map = map;
             _path = path;
-            
             if (!map.IsOnMap(location))
             {
                 throw new OutOfBoundsException($"({location.X},{location.Y}) is not on the map!");
@@ -34,14 +30,12 @@ namespace TreehouseDefense
                 throw new OnPathException($"({location.X},{location.Y}) cannot be placed on the path!");
             }
         }
-
         public bool IsActive => Health > 0;
         public bool IsInDanger(MapLocation location, int range) => _location.InRangeOf(location, range);
         private bool IsSuccessfulShot()
         {
             return _random.NextDouble() < Accuracy;
         }
-
         public void FireOnInvaders(IInvader[] invaders)
         {
             foreach(IInvader invader in invaders)
@@ -53,12 +47,12 @@ namespace TreehouseDefense
                         invader.DecreaseHealth(Power);
                         //Console.WriteLine($"SUCCESS : Shot and hit {invader.GetType().Name}!");
                         Console.Write($"|x|");
-
                         if (invader.IsNeutralized)
                         {
                             Console.WriteLine($"\n+1EXP : {invader.Honorific} neutralized!\n");
                         }
-                    } else
+                    } 
+                    else
                     {
                         Console.Write("|o|");
                     }
@@ -66,10 +60,25 @@ namespace TreehouseDefense
                 }
             }
         }
-        
         public void DecreaseHealth( int factor )
         {
             Health -= factor;
         }
+    }
+    class SniperTower : Tower
+    {
+        public override double Accuracy {get;} = 1;
+        public override int Range {get;} = 4;
+        public override int Power {get;} = 20;
+        public SniperTower(MapLocation location, Map map, Path path) : base(location, map, path)
+        {}
+    }
+    class StrongTower : Tower
+    {
+        public override int Power {get;} = 75;
+        public override int Health {get; protected set;} = 2;
+
+        public StrongTower(MapLocation location, Map map, Path path) : base(location, map, path)
+        {}
     }
 }
