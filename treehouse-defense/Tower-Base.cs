@@ -36,6 +36,7 @@ namespace TreehouseDefense
         }
 
         public bool IsActive => Health > 0;
+        public bool IsInDanger(MapLocation location, int range) => _location.InRangeOf(location, range);
         private bool IsSuccessfulShot()
         {
             return _random.NextDouble() < Accuracy;

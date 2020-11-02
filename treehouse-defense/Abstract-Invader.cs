@@ -36,6 +36,12 @@ namespace TreehouseDefense
         public virtual void DecreaseHealth(int factor)
         {
           Health -= factor; 
+          _pathStep --;
+
+          if ( _pathStep < 0 )
+          {
+              _pathStep = 1;
+          }
         }
         public virtual void FireOnTowers(Tower[] towers)
         {}
