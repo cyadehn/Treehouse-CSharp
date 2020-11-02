@@ -3,22 +3,15 @@ namespace TreehouseDefense
     class Level
     {
         private readonly IInvader[] _invaders;
-
-        // Currently set on Level init in Game.cs
         public Tower[] Towers { get; set; }
-
         public Level(IInvader[] invaders)
         {
             _invaders = invaders;
         }
-
-        //Returns: true if the player wins
-        //False otherwise
         public bool Play()
         {
             // Run until all invaders are neutralized or an invader reaches the end
             int remainingInvaders = _invaders.Length;
-
             while( remainingInvaders > 0 )
             {
                 // Each tower has opportunity to fire on invaders
@@ -26,7 +19,6 @@ namespace TreehouseDefense
                 {
                     tower.FireOnInvaders(_invaders);
                 }
-
                 // Count and move the invaders that are still active
                 remainingInvaders = 0;
                 foreach( IInvader invader in _invaders )
@@ -38,14 +30,11 @@ namespace TreehouseDefense
                         {
                             return false;
                         }
-                        
                         invader.FireOnTowers(Towers);
-
                         remainingInvaders++;
                     }
                 }
             }
-
             return true;
         }
     }
