@@ -18,9 +18,34 @@ namespace TreehouseDefense.Tests
             Assert.Equal(y,point.Y);
         }
         [Fact()]
-        public void DistanceToTest()
+        public void DistanceToWithPythagoreanTriple()
         {
-            Assert.True(false, "This test needs an implementation");
+            var point = new Point(3,4);
+            // "target" since this is the class instance being tested
+            var target = new Point(0,0);
+            var expected = 5.0;
+            var actual = target.DistanceTo(point);
+            // third parameter will set the level of precision -- due to floating point comparison here
+            Assert.Equal(expected, actual, 2);
+        }
+        [Fact()]
+        public void DistanceToPointAtSamePosition()
+        {
+            var point = new Point(3,4);
+            var target = new Point(3,4);
+            var expected = 0.0;
+            var actual = target.DistanceTo(point);
+            Assert.Equal(expected, actual, 2);
+
+        }
+        [Fact()]
+        public void EqualsWithDifferentInstances()
+        {
+            var point1 = new Point(3,4);
+            var point2 = new Point(3,4);
+            bool result = point1.Equals(point2);
+            Assert.True(result);
+
         }
     }
 }
