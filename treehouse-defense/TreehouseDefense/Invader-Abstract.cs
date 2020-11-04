@@ -53,7 +53,7 @@ namespace TreehouseDefense
         }
         private int ArrayIndex(object[] obj)
         {
-            return System.Math.Ceiling(Int32.Parse(_random.Next(obj.Length)));
+            return _random.Next(obj.Length);
         }
         public override void FireOnTowers(Tower[] towers)
         {
@@ -79,7 +79,6 @@ namespace TreehouseDefense
                 }
             }
             index = ArrayIndex(towers);
-            continue;
         }
     }
 }

@@ -1,7 +1,7 @@
 using System;
 namespace TreehouseDefense
 {
-  class Map 
+  public class Map 
   {
     public readonly int Width;
     public readonly int Height;
@@ -16,7 +16,7 @@ namespace TreehouseDefense
         point.Y >= 0 && point.Y < Height;
     }
   }
-  class MapLocation : Point 
+  public class MapLocation : Point 
   {
     public MapLocation(int x, int y, Map map) : base(x,y) 
     {
@@ -30,7 +30,7 @@ namespace TreehouseDefense
       return DistanceTo(location) <= range;
     }
   }
-  class Path
+  public class Path
   {
     private readonly MapLocation[] _path;
     public int Length => _path.Length;
@@ -54,7 +54,7 @@ namespace TreehouseDefense
       return false;
     }
   }
-  class Point
+  public class Point
   {
     public readonly int X;
     public readonly int Y;
