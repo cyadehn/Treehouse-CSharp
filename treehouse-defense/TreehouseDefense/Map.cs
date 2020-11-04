@@ -63,15 +63,15 @@ namespace TreehouseDefense
       X = x;
       Y = y;
     }
-    public int DistanceTo(int x, int y) 
+    public double DistanceTo(int x, int y) 
     {
       int xDiff = X - x;
       int yDiff = Y - y;
       int xDiffSquared = xDiff * xDiff;
       int yDiffSquared = yDiff * yDiff;
-      return (int)Math.Sqrt(xDiffSquared + yDiffSquared);
+      return (double)Math.Sqrt(xDiffSquared + yDiffSquared);
     }
-    public int DistanceTo(Point point) 
+    public double DistanceTo(Point point) 
     {
       return DistanceTo(point.X, point.Y);
     }
