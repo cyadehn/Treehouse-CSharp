@@ -1,7 +1,7 @@
 using System;
 namespace TreehouseDefense
 {
-    class Tower
+    public class Tower
     {
         private readonly MapLocation _location;
         private readonly Map _map;
@@ -65,7 +65,7 @@ namespace TreehouseDefense
             Health -= factor;
         }
     }
-    class SniperTower : Tower
+    public class SniperTower : Tower
     {
         public override double Accuracy {get;} = 1;
         public override int Range {get;} = 4;
@@ -73,7 +73,7 @@ namespace TreehouseDefense
         public SniperTower(MapLocation location, Map map, Path path) : base(location, map, path)
         {}
     }
-    class StrongTower : Tower
+    public class StrongTower : Tower
     {
         public override int Power {get;} = 75;
         public override int Health {get; protected set;} = 2;

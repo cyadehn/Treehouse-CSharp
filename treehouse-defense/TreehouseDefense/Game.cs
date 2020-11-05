@@ -9,15 +9,16 @@ namespace TreehouseDefense
 			try 
 			{
 				Path path = new Path(
-						new [] {
-						new MapLocation(0,2,map),
-						new MapLocation(1,2,map),
-						new MapLocation(2,2,map),
-						new MapLocation(3,2,map),
-						new MapLocation(4,2,map),
-						new MapLocation(5,2,map),
-						new MapLocation(6,2,map),
-						new MapLocation(7,2,map)});
+					new [] {
+					new MapLocation(0,2,map),
+					new MapLocation(1,2,map),
+					new MapLocation(2,2,map),
+					new MapLocation(3,2,map),
+					new MapLocation(4,2,map),
+					new MapLocation(5,2,map),
+					new MapLocation(6,2,map),
+					new MapLocation(7,2,map)
+					});
 				IInvader[] invaders =
 				{
 					new ShieldedInvader(path),
@@ -35,8 +36,7 @@ namespace TreehouseDefense
 						new StrongTower(new MapLocation(7, 3, map), map, path),
 						new SniperTower(new MapLocation(3, 3, map), map, path)
 				};
-				Level level = new Level(invaders)
-				{
+				Level level = new Level(invaders) {
 					Towers = towers
 				};
 				bool playerWon = level.Play();

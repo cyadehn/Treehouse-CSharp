@@ -1,7 +1,7 @@
 using System;
 namespace TreehouseDefense
 {
-    abstract class Invader : IInvader
+    public abstract class Invader : IInvader
     {
         private readonly Path _path;
         protected int _pathStep = 0;
@@ -35,7 +35,7 @@ namespace TreehouseDefense
         public virtual void FireOnTowers(Tower[] towers)
         {}
     }
-    abstract class ArmedInvader : Invader
+    public abstract class ArmedInvader : Invader
     {
         private static readonly System.Random _random = new System.Random();
         private readonly Path _path;

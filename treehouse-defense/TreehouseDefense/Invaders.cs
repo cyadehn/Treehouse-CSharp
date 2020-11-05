@@ -1,13 +1,13 @@
 namespace TreehouseDefense
 {
-    class BasicInvader : Invader
+    public class BasicInvader : Invader
     {
         public override int Health { get; protected set; } = 100;
         public override int Power { get; protected set; } = 0;
         public BasicInvader(Path path) : base(path)
         {}
     }
-    class FastInvader : Invader
+    public class FastInvader : Invader
     {
         protected override int StepSize {get;} = 2;
         public override int Health { get; protected set; } = 100;
@@ -15,7 +15,7 @@ namespace TreehouseDefense
         public FastInvader(Path path) : base(path)
         {}
     }
-    class ShieldedInvader : Invader
+    public class ShieldedInvader : Invader
     {
         public override int Health { get; protected set; } = 100;
         public override int Power { get; protected set; } = 0;
@@ -30,7 +30,7 @@ namespace TreehouseDefense
             }  
         }
     }
-    class StrongArmedInvader : ArmedInvader
+    public class StrongArmedInvader : ArmedInvader
     {
         public override int Health { get; protected set; } = 100;
         public override int Power { get; protected set; } = 2;
@@ -39,7 +39,7 @@ namespace TreehouseDefense
         public StrongArmedInvader(Path path) : base(path)
         {}
     }
-    class BasicArmedInvader : ArmedInvader
+    public class BasicArmedInvader : ArmedInvader
     {
         public override int Health { get; protected set; } = 100;
         public override int Power { get; protected set; } = 1;
@@ -47,7 +47,7 @@ namespace TreehouseDefense
         public BasicArmedInvader(Path path) : base(path)
         {}
     }
-    class ResurrectingInvader : IInvader
+    public class ResurrectingInvader : IInvader
     {
         private BasicInvader _regeneration1;
         private StrongArmedInvader _regeneration2;
