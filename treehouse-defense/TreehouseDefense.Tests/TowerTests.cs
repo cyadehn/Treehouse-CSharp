@@ -1,5 +1,4 @@
-﻿using static TreehouseDefense.Tower;
-using Xunit;
+﻿using Xunit;
 
 namespace TreehouseDefense.Tests
 {
@@ -9,12 +8,19 @@ namespace TreehouseDefense.Tests
         public void FireOnInvadersDecreasesInvadersHealth()
         {
             var map = new Map(3, 3);
-            var target = new Tower(new MapLocation(0, 0, map));
+            var path = new Path(new MapLocation[] {
+                new MapLocation(0,1,map),
+                new MapLocation(0,2,map),
+                new MapLocation(0,3,map)
+                }
+            );
 
-            var invaders = new InvaderMock[]
+            var target = new Tower(new MapLocation(0, 0, map), map, path);
+
+            var invaders = new BasicInvader[]
             {
-                new InvaderMock() { Location = new MapLocation(0, 0, map) },
-                new InvaderMock() { Location = new MapLocation(0, 0, map) }
+                new BasicInvader(path),
+                new BasicInvader(path)
             };
 
             target.FireOnInvaders(invaders);
