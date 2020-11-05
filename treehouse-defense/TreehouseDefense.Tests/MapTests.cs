@@ -16,14 +16,14 @@ namespace TreehouseDefense.Tests
         public void PointIsOnMap()
         {
             var target = _map3;
-            Assert.True(target.OnMap(new Point(1, 2)));
+            Assert.True(target.IsOnMap(new Point(1, 2)));
         }
 
         [Fact()]
         public void PointIsNotOnMap()
         {
             var target = _map3;
-            Assert.False(target.OnMap(new Point(3, 3)));
+            Assert.False(target.IsOnMap(new Point(3, 3)));
         }
     }
 }

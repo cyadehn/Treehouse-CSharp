@@ -1,4 +1,4 @@
-﻿using TreehouseDefense.Tests.Mocks;
+﻿using static TreehouseDefense.Tower;
 using Xunit;
 
 namespace TreehouseDefense.Tests
