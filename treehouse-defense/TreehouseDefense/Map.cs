@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 namespace TreehouseDefense
 {
   public class Map 
@@ -42,17 +43,7 @@ namespace TreehouseDefense
     {
       return (pathStep < _path.Length) ? _path[pathStep] : null;
     }
-    public bool IsOnPath(MapLocation location)
-    {
-      foreach ( var pathLocation in _path )
-      {
-        if ( location.Equals(pathLocation) )
-        {
-          return true;
-        }
-      }
-      return false;
-    }
+    public bool IsOnPath(MapLocation location) => _path.Contains(location);
   }
   public class Point
   {
