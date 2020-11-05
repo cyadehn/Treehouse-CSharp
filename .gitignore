@@ -1,7 +1,7 @@
 *.swp
 **/bin/*
 **/obj/*
-.vscode/*
+**/.vscode/*
 .DS_Store
 practice/
 linq-queries/
