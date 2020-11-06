@@ -60,6 +60,24 @@ namespace TreehouseDefense
                 }
             }
         }
+        // FireOnInvaders overload for unit testing
+        public void FireOnInvaders(IInvader invader)
+        {
+                    if (IsSuccessfulShot())
+                    {
+                        invader.DecreaseHealth(Power);
+                        //Console.WriteLine($"SUCCESS : Shot and hit {invader.GetType().Name}!");
+                        Console.Write($"|x|");
+                        if (invader.IsNeutralized)
+                        {
+                            Console.WriteLine($"\n+1EXP : {invader.Honorific} neutralized!\n");
+                        }
+                    } 
+                    else
+                    {
+                        Console.Write("|o|");
+                    }
+        }
         public void DecreaseHealth( int factor )
         {
             Health -= factor;
