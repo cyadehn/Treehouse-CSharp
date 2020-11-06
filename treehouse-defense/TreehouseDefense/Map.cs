@@ -8,8 +8,17 @@ namespace TreehouseDefense
     public readonly int Height;
     public Map( int width, int height ) 
     {
-      Width = width;
-      Height = height;
+      {
+        if (width > 0 && height > 0)
+        {
+          Width = width;
+          Height = height;
+        }
+        else
+        {
+          throw new ArgumentOutOfRangeException();
+        }
+      }
     }
     public bool IsOnMap(Point point) 
     {
