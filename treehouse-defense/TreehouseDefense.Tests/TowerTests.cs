@@ -9,13 +9,13 @@ namespace TreehouseDefense.Tests
         {
             var map = new Map(3, 3);
             var path = new Path(new MapLocation[] {
-                new MapLocation(0,1,map),
-                new MapLocation(0,2,map),
-                new MapLocation(0,3,map)
+                new MapLocation(0,0,map),
+                new MapLocation(0,0,map),
+                new MapLocation(0,0,map)
                 }
             );
 
-            var target = new Tower(new MapLocation(0, 0, map), map, path);
+            var target = new Tower(new MapLocation(2, 1, map), map, path);
 
             var invaders = new BasicInvader[]
             {
@@ -23,9 +23,18 @@ namespace TreehouseDefense.Tests
                 new BasicInvader(path)
             };
 
-            target.FireOnInvaders(invaders);
+            var expected = new BasicInvader(path).Health - target.Power;
 
-            Assert.All(invaders, i => Assert.Equal(1, i.Health));
+            foreach ( IInvader invader in invaders )
+            {
+                var startingHealth = invader.Health;
+                while (invader.Health == startingHealth)
+                {
+                    target.FireOnInvaders(invader);
+                }
+            }
+
+            Assert.All(invaders, i => Assert.Equal(expected, i.Health));
         }
     }
 }
